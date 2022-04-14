@@ -4,10 +4,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,23 +14,23 @@ import java.time.Duration;
 import java.util.Properties;
 
 public class TestUtils {
-    public static WebDriver driver;
-    private String url;
+    public WebDriver driver;
+    private String url; // = "https://www.saucedemo.com/";
     private String browser;
     private int implicitWait;
 
-
-    @BeforeMethod
-    public void setUp(){
+    @BeforeTest
+    public void setUp() {
         setupBrowserDriver();
     }
 
-    @AfterMethod
-    public void tearDown(){
+    @AfterTest
+    public void tearDown() {
         driver.quit();
     }
-    private void setupBrowserDriver(){
-        try (FileInputStream configFile = new FileInputStream("src/test/resources/config.properties")){
+
+    private void setupBrowserDriver() {
+        try (FileInputStream configFile = new FileInputStream("src/test/resources/config.properties")) {
             Properties config = new Properties();
             config.load(configFile);
             url = config.getProperty("urlAddress");
@@ -53,7 +52,7 @@ public class TestUtils {
         }
     }
 
-    private void loadUrl(String url){
+    private void loadUrl(String url) {
         driver.get(url);
     }
 
@@ -69,15 +68,8 @@ public class TestUtils {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
         loadUrl(url);
-
     }
 
-    private void UnsuccessfulLoginTest(String userName, String password){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
-        String url = null;
-
-
-    }
 }
+
+

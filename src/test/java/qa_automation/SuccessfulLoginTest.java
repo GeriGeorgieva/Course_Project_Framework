@@ -1,5 +1,6 @@
 package qa_automation;
 
+import base.TestUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,9 +19,8 @@ public class SuccessfulLoginTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
-
     @AfterTest
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
     }
 
@@ -41,9 +41,7 @@ public class SuccessfulLoginTest {
         loginBtn.click();
 
 
-
         WebElement userAllPagesButton = driver.findElement(By.id("react-burger-menu-btn"));
         Assert.assertTrue(userAllPagesButton.isDisplayed(), "This shall be visible after successful login");
     }
-
 }

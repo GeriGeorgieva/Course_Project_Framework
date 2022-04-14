@@ -1,18 +1,13 @@
 package qa_automation;
 
 import base.TestUtils;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.LoginPage;
 
-import java.time.Duration;
-
-public class UnsuccessfulLoginTest extends TestUtils {
+public class UnsuccessfulLoginTest<LoginPage> extends TestUtils {
 
     @DataProvider(name = "wrongUsersList")
     public Object [][] getWrongUsers() {
@@ -22,8 +17,7 @@ public class UnsuccessfulLoginTest extends TestUtils {
                 {"wow", "wow"},
                 {"wrong", "secret_sauce"}
         };
-    }
-
+}
     @Test(dataProvider = "wrongUsersList")
     public void UnsuccessfulLogin(String userName, String password) {
 
@@ -37,8 +31,6 @@ public class UnsuccessfulLoginTest extends TestUtils {
 
         WebElement loginBtn = driver.findElement(By.cssSelector("[value=Login]"));
         loginBtn.click();
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.tryToLogin("wrong", "wrong");
 
 
         WebElement errorLoginLabel = driver.findElement(By.xpath("//*[text()='Epic sadface: Username and password do not match any user in this service']"));
