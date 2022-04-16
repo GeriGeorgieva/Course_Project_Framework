@@ -8,23 +8,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static org.bouncycastle.cms.RecipientId.password;
 
-public class CheckOutTest extends TestUtils {
+public class CheckOutTest {
     private WebDriver driver;
 
-    @BeforeTest
+    @BeforeMethod
     public void initializeDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }
@@ -55,11 +52,11 @@ public class CheckOutTest extends TestUtils {
         passwordInput.click();
         passwordInput.sendKeys("password");
 
-        WebElement login_button = driver.findElement(By.className("btn_action"));
-        login_button.click();
+        WebElement loginButton = driver.findElement(By.className("btn_action"));
+        loginButton.click();
 
 
-        WebElement addItemButton = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
+        WebElement addItemButton = driver.findElement(By.id("shopping_cart_container"));
         addItemButton.click();
 
 

@@ -9,8 +9,12 @@ public class CheckOutTest extends TestUtils {
     protected WebDriver driver;
     private static final String ADD_TO_CARD_LOCATOR = "//button[@id='add-to-cart-sauce-labs-%s']";
 
-    @FindBy(id = "add-to-cart-sauce-labs-backpack")
-    private WebElement addToCartSauceLabsBackPack;
+    @FindBy(id = "shopping_cart_container")
+    private WebElement addToCartSauceLabsBikeLight;
+
+    @FindBy(className = "shopping_cart_link")
+    private WebElement shoppingCartLink;
+
 
 
 

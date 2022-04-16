@@ -8,27 +8,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-public class ProductTest extends TestUtils {
+public class ProductTest {
     private WebDriver driver;
-    private WebDriver driver1;
 
-    @BeforeTest
+    @BeforeMethod
     public void initializeDriver() {
         WebDriverManager.chromedriver().setup();
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
-        driver1 = new ChromeDriver();
+        driver = new ChromeDriver();
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         driver.quit();
-        driver1.quit();
     }
 
     @DataProvider(name = "Correct-login")
@@ -50,14 +43,14 @@ public class ProductTest extends TestUtils {
         passwordInput.click();
         passwordInput.sendKeys(password);
 
-        WebElement login_button = driver.findElement(By.className("btn_action"));
-        login_button.click();
+        WebElement loginButton = driver.findElement(By.className("btn_action"));
+        loginButton.click();
 
-        WebElement add_item_button = driver.findElement(By.id("add-to-cart-sauce-labs-bike-light"));
-        add_item_button.click();
+        WebElement addItemButton = driver.findElement(By.id("add-to-cart-sauce-labs-bike-light"));
+        addItemButton.click();
 
-        WebElement add_second_Item = driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket"));
-        add_second_Item.click();
+        WebElement addSecondItemButton = driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket"));
+        addSecondItemButton.click();
 
 
         WebElement showButton = driver.findElement(By.className("shopping_cart_badge"));
